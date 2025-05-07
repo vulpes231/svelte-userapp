@@ -114,7 +114,7 @@ const Navbar = () => {
                   <a href="#" className="text-gray-700">
                     <FiSearch className="text-xl" />
                   </a>
-                  <a href="#" className="text-gray-700">
+                  <a href="/signin" className="text-gray-700">
                     <FiUser className="text-xl" />
                   </a>
                   <a href="#" className="text-gray-700">
