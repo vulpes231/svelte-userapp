@@ -1,7 +1,7 @@
 import React from "react";
-import { Navbar } from "./components";
+import { Footer, Navbar } from "./components";
 import { Route, Routes } from "react-router-dom";
-import { Landing, SignIn } from "./pages";
+import { Landing, SignIn, SignUp } from "./pages";
 
 const App = () => {
   return (
@@ -10,7 +10,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
+      <Footer />
     </div>
   );
 };

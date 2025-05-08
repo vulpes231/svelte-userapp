@@ -34,7 +34,7 @@ A sleek, modern e-commerce web app built with Vite for fashion enthusiasts looki
    **bash**
 
 - ```
-  git clone https://github.com/vulpes231/svelte-accessories.git
+  git clone https://github.com/vulpes231/svelte-userapp.git
   cd svelte-accessories
   ```
 - Install dependencies:

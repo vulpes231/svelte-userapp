@@ -3,15 +3,17 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiSearch, FiShoppingBag, FiUser, FiMenu, FiX } from "react-icons/fi";
 import { FaInstagram, FaPinterest } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "New Arrivals", href: "#" },
-    { name: "Dresses", href: "#" },
-    { name: "Bags", href: "#" },
-    { name: "Accessories", href: "#" },
+    { name: "Shop", href: "/" },
+    { name: "About", href: "#" },
+    { name: "Contact", href: "#" },
+    { name: "Reviews", href: "#" },
   ];
 
   return (
@@ -20,12 +22,13 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4 hidden md:block">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <motion.div
+          <motion.a
+            href="/"
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-playfair italic font-semibold"
+            className="text-2xl font-playfair italic font-semibold cursor-pointer"
           >
             Svelte Accessories
-          </motion.div>
+          </motion.a>
 
           {/* Navigation Links */}
           <nav className="hidden md:flex space-x-8">
@@ -47,9 +50,16 @@ const Navbar = () => {
             <motion.button whileTap={{ scale: 0.9 }}>
               <FiSearch className="text-xl" />
             </motion.button>
-            <motion.button whileTap={{ scale: 0.9 }}>
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              onClick={() => {
+                navigate("/signin");
+              }}
+              className="cursor-pointer"
+            >
               <FiUser className="text-xl" />
             </motion.button>
+            {/* cart */}
             <motion.button whileTap={{ scale: 0.9 }} className="relative">
               <FiShoppingBag className="text-xl" />
               <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
@@ -73,12 +83,13 @@ const Navbar = () => {
           </button>
 
           {/* Logo */}
-          <motion.div
+          <motion.a
+            href="/"
             whileHover={{ scale: 1.05 }}
             className="text-xl font-playfair italic font-semibold"
           >
             Svelte Accessories
-          </motion.div>
+          </motion.a>
 
           {/* Cart Icon */}
           <motion.button whileTap={{ scale: 0.9 }} className="relative">
