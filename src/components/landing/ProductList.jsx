@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
 import { FiHeart, FiShoppingCart } from "react-icons/fi";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../features/cartSlice";
+// import { useCart } from "./CartContext";
 
 const ProductList = ({ product }) => {
+  const dispatch = useDispatch();
+
   return (
     <motion.div
       whileHover={{ backgroundColor: "#fafafa" }}
@@ -25,7 +30,10 @@ const ProductList = ({ product }) => {
             <button className="p-2 hover:bg-rose-50 rounded-full">
               <FiHeart className="text-gray-400 hover:text-rose-300" />
             </button>
-            <button className="p-2 hover:bg-rose-50 rounded-full">
+            <button
+              onClick={() => dispatch(addItem(product))}
+              className="p-2 hover:bg-rose-50 rounded-full"
+            >
               <FiShoppingCart className="text-gray-600 hover:text-rose-400" />
             </button>
           </div>

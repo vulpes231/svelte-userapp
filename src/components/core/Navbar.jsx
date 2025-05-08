@@ -1,13 +1,19 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiSearch, FiShoppingBag, FiUser, FiMenu, FiX } from "react-icons/fi";
 import { FaInstagram, FaPinterest } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Cart from "./Cart";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleCart } from "../../features/cartSlice";
+// toggleCart
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { items, isOpen } = useSelector((state) => state.cart);
 
   const navLinks = [
     { name: "Shop", href: "/" },
@@ -15,6 +21,12 @@ const Navbar = () => {
     { name: "Contact", href: "#" },
     { name: "Reviews", href: "#" },
   ];
+
+  // useEffect(() => {
+  //   if (items) {
+  //     console.log(items.length);
+  //   }
+  // }, [items]);
 
   return (
     <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
@@ -60,12 +72,19 @@ const Navbar = () => {
               <FiUser className="text-xl" />
             </motion.button>
             {/* cart */}
-            <motion.button whileTap={{ scale: 0.9 }} className="relative">
+
+            <motion.button
+              onClick={() => dispatch(toggleCart())}
+              className="relative"
+            >
               <FiShoppingBag className="text-xl" />
-              <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                0
-              </span>
+              {items && items.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                  {items.length}
+                </span>
+              )}
             </motion.button>
+            <Cart isOpen={isOpen} onClose={() => dispatch(toggleCart())} />
           </div>
         </div>
       </div>
@@ -92,12 +111,18 @@ const Navbar = () => {
           </motion.a>
 
           {/* Cart Icon */}
-          <motion.button whileTap={{ scale: 0.9 }} className="relative">
+          <motion.button
+            onClick={() => dispatch(toggleCart())}
+            className="relative"
+          >
             <FiShoppingBag className="text-xl" />
-            <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-              0
-            </span>
+            {items && items.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {items.length}
+              </span>
+            )}
           </motion.button>
+          <Cart isOpen={isOpen} onClose={() => dispatch(toggleCart())} />
         </div>
 
         {/* Mobile Menu Dropdown */}
